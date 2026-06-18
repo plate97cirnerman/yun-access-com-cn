@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://plate97cirnerman.github.io/yun-access-com-cn/sitemap.xml

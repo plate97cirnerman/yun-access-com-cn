@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开云 · 信息查照与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f6f7f9;
+            color: #1e1f24;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- Hero 区：深色沉稳 ---- */
+        .hero {
+            background: linear-gradient(145deg, #111318 0%, #1d202a 100%);
+            color: #e9ebf0;
+            padding: 3.6rem 1.5rem 4.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #b0b6c7;
+            max-width: 640px;
+            margin: 0.6rem auto 1.8rem;
+            font-weight: 350;
+        }
+
+        .hero .lead {
+            font-size: 1.1rem;
+            max-width: 720px;
+            margin: 1rem auto 0;
+            color: #d0d5e3;
+            padding: 0 0.5rem;
+        }
+
+        .hero a {
+            color: #90b4f8;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(144, 180, 248, 0.3);
+            transition: border-color 0.25s, color 0.25s;
+        }
+
+        .hero a:hover {
+            color: #bed3ff;
+            border-bottom-color: #bed3ff;
+        }
+
+        /* ---- 正文浅色区 ---- */
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 3.6rem;
+        }
+
+        .section-title {
+            font-size: 1.65rem;
+            font-weight: 450;
+            margin: 2.8rem 0 0.8rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 1.4rem 0 0.6rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #0e111a;
+        }
+
+        .card p {
+            color: #3b3e4a;
+            font-size: 0.95rem;
+        }
+
+        .card .tag {
+            display: inline-block;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            background: #eef1f8;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #1f2937;
+        }
+
+        .dim-text {
+            color: #555a6a;
+            margin: 1.2rem 0 0.2rem;
+            font-size: 0.98rem;
+        }
+
+        .faq-block {
+            margin: 2.2rem 0 0.6rem;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 1.8rem 1.2rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .faq-item {
+            margin-bottom: 1.1rem;
+            border-bottom: 1px solid #ecedf0;
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #12141c;
+            font-size: 1rem;
+        }
+
+        .faq-a {
+            margin-top: 0.3rem;
+            color: #454a5a;
+            font-size: 0.94rem;
+        }
+
+        .faq-a a {
+            color: #2563eb;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 0.5px;
+        }
+
+        .faq-a a:hover {
+            color: #1d4ed8;
+        }
+
+        .more-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px dotted #2563eb;
+        }
+
+        .more-link:hover {
+            color: #1e40af;
+            border-bottom-style: solid;
+        }
+
+        /* ---- 底部 ---- */
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem 1.5rem 2.2rem;
+            background: #eef0f4;
+            text-align: center;
+            color: #4a4f5e;
+            font-size: 0.9rem;
+            border-top: 1px solid #dde0e8;
+        }
+
+        .footer a {
+            color: #1e293b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #94a3b8;
+        }
+
+        .footer a:hover {
+            text-decoration-color: #2563eb;
+            color: #0b1b33;
+        }
+
+        .footer .sep {
+            margin: 0 0.5rem;
+            color: #a4aab9;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .sub { font-size: 0.95rem; }
+            .section-title { font-size: 1.4rem; }
+            .grid-2col { gap: 1.2rem; }
+            .content { padding: 1.8rem 1rem 2.8rem; }
+            .faq-block { padding: 1.2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero 区：深色背景，强调查照与延伸 -->
+    <section class="hero">
+        <h1>开云 · 信息查照</h1>
+        <div class="sub">条目对照 · 场景延伸 · 快速索引</div>
+        <p class="lead">
+            日常查找、交叉验证、补充阅读——<a href="https://yun-access.com.cn">开云</a>围绕结构化信息提供稳定支撑，帮助用户在零散内容中建立可回溯的参照体系。
+        </p>
+    </section>
+
+    <!-- 正文浅色区域 -->
+    <div class="content">
+
+        <!-- 优势区：偏向信息密度与场景 -->
+        <h2 class="section-title">对照 · 检索 · 延伸</h2>
+        <div class="grid-2col">
+            <div class="card">
+                <h3>多维对照</h3>
+                <p>支持条目横向对比，来源与版本可溯，降低反复跳转的认知负载。适合需要快速对齐多个参考点的场景。</p>
+                <span class="tag">版本记录</span>
+            </div>
+            <div class="card">
+                <h3>延伸节点</h3>
+                <p>核心概念下自动聚合关联条目、注解与外链，方便从一条信息出发，向外扩展阅读边界。</p>
+                <span class="tag">关联路径</span>
+            </div>
+            <div class="card">
+                <h3>摘要与出处</h3>
+                <p>每条记录均保留摘要及原始来源标记，减少断章取义的可能。强调信息可信度及归因。</p>
+                <span class="tag">引用参考</span>
+            </div>
+            <div class="card">
+                <h3>日常速查</h3>
+                <p>面向频繁查阅的轻量设计，无需完成冗长流程即可获取关键字段。适合碎片信息管理。</p>
+                <span class="tag">低摩擦</span>
+            </div>
+        </div>
+
+        <!-- 说明区：切入日常使用逻辑 -->
+        <h2 class="section-title">日常场景下的使用逻辑</h2>
+        <p class="dim-text">
+            当需要确认某一个名词的标准定义、查阅相关文献的对照表，或从一段模糊描述中定位准确条目时，
+            <a href="https://yun-access.com.cn">开云</a> 提供了一种近似卡片索引的交互：先定位范围，再逐级展开内容。
+            同时，对于需要频繁对比的字段（版本号、参数、日期、分类标签），页面内置了简单的差异高亮标记。
+        </p>
+        <p class="dim-text">
+            延伸阅读以侧边或内联形式呈现，不打断主阅读流。每条延伸建议附带简短理由（如“基于相同标签”“引用频率高”），帮助用户判断是否值得展开。
+        </p>
+
+        <!-- FAQ 摘要：三个常见问题 + 指向完整 FAQ 的示意图 -->
+        <h2 class="section-title">FAQ 摘要</h2>
+        <div class="faq-block">
+            <div class="faq-item">
+                <div class="faq-q">① 如何快速定位到某一条目？</div>
+                <div class="faq-a">页面顶部提供检索框与分类筛选器，支持模糊匹配。输入关键词后自动联想相关条目。也可直接使用目录结构逐层浏览。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">② 条目来源与可信度如何判断？</div>
+                <div class="faq-a">每条内容均标注原始来源（链接、引用编号或机构简称）。部分条目附有“可信等级”标签（如权威来源、多方交叉、待核实）。扩展阅读时建议优先参考标注等级较高的条目。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">③ 延伸阅读的推荐依据是什么？</div>
+                <div class="faq-a">基于当前条目的标签体系、常见关联查询记录以及手动维护的映射关系。推荐内容一般限制在 5 条以内，避免信息过载。</div>
+            </div>
+            <div style="margin-top: 0.8rem;">
+                <a href="https://yun-access.com.cn" class="more-link">开云</a>
+            </div>
+        </div>
+
+        <!-- 一个额外的提示板块 —— 配合语气简洁专业 -->
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #5f6577; border-left: 2px solid #cbd5e1; padding-left: 1.2rem;">
+            <strong>使用提示：</strong> 对照多个条目时，可打开并排视图；部分页面提供“差异对比”模式，高亮版本间的字段变化。
+            所有操作均在当前页面内完成，无需额外跳转。
+        </p>
+
+    </div>
+
+    <!-- 底部链接 & 版权示意 -->
+    <footer class="footer">
+        <span>内容参考 · 信息检索</span>
+        <span class="sep">|</span>
+        <a href="https://yun-access.com.cn">开云</a>
+        <span class="sep">·</span>
+        <span>索引结构持续更新</span>
+    </footer>
+
+</body>
+</html>
